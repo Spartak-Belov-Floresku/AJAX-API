@@ -1,10 +1,10 @@
 describe('Testing block of functions searchShows(), populateShows(), getEpisodes(), and populateEpisodes()', function(){
     beforeEach(function () {
         showsList = $("#shows-list");
-        episodesArea = $("#episodes-area")
+        episodesList = $("#episodes-list")
     });
 
-    it('This block has to activate and run searchShows and populateShows to retrieve data from server. populateShows() has to create dom`s elements. ', async function () {
+    it('This block has to activate and run searchShows() and populateShows() to retrieve data from server. populateShows() has to create dom`s elements. ', async function () {
         const result = await searchShows("hike");
             expect(result).toBeInstanceOf(Array);
         populateShows(result)
@@ -18,13 +18,13 @@ describe('Testing block of functions searchShows(), populateShows(), getEpisodes
         const id = divs[0].getAttribute('data-show-id')
             expect(parseInt(id)).toBeInstanceOf(Number)
         await getEpisodes(id);
-            expect(episodesArea.length > 0).toBe(true);
+            expect(episodesList.length > 0).toBe(true);
     });
 
     afterEach( function () {
         setTimeout(()=>{
             showsList.empty();
-            episodesArea.empty();
+            episodesList.empty();
         },1000);
     })
 });
